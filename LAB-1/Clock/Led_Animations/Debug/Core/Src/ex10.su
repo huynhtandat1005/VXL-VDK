@@ -1,0 +1,7 @@
+ex10.c:95:8:setNumberOnClock	16	static
+ex10.c:64:5:main	24	static
+ex10.c:111:8:clearNumberOnClock	16	static
+ex10.c:127:8:clearAllClock	32	static
+ex10.c:166:6:SystemClock_Config	72	static
+ex10.c:202:13:MX_GPIO_Init	32	static
+ex10.c:255:6:Error_Handler	4	static,ignoring_inline_asm
