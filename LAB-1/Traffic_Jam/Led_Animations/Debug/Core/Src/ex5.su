@@ -1,6 +1,0 @@
-ex5.c:96:8:display7SEG	16	static
-ex5.c:64:5:main	64	static
-ex5.c:113:9:display7SEG1	16	static
-ex5.c:268:6:SystemClock_Config	72	static
-ex5.c:304:13:MX_GPIO_Init	32	static
-ex5.c:357:6:Error_Handler	4	static,ignoring_inline_asm
