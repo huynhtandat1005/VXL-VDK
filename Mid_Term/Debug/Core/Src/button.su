@@ -1,0 +1,9 @@
+button.c:36:5:RESET_pressed	4	static
+button.c:44:5:INC_pressed	4	static
+button.c:52:5:DEC_pressed	4	static
+button.c:60:5:INC_longpressed	4	static
+button.c:68:5:DEC_longpressed	4	static
+button.c:76:6:input_RESET	8	static
+button.c:91:6:input_INC	8	static
+button.c:113:6:input_DEC	8	static
+button.c:135:6:getKeyInput	8	static
