@@ -1,0 +1,34 @@
+/*
+ * 7seg.c
+ *
+ *  Created on: Nov 13, 2022
+ *      Author: huynh
+ */
+
+#include "7seg.h"
+
+int seg[4] = {0,0,0,0} ;
+
+void update(){
+	if(seg[0] == 1) HAL_GPIO_WritePin(A0_GPIO_Port, A0_Pin, GPIO_PIN_SET);
+	if(seg[1] == 1) HAL_GPIO_WritePin(A0_GPIO_Port, A0_Pin, GPIO_PIN_SET);
+	if(seg[2] == 1) HAL_GPIO_WritePin(A0_GPIO_Port, A0_Pin, GPIO_PIN_SET);
+	if(seg[3] == 1) HAL_GPIO_WritePin(A0_GPIO_Port, A0_Pin, GPIO_PIN_SET);
+}
+void display(int number){
+	clear();
+	if(number == 1) seg[3] = 1;
+	if(number == 2) seg[2] = 1;
+	if(number == 3) {
+		seg[3] = 1;
+		seg[2] = 1;
+	}
+	update();
+}
+void clear(){
+	for(int i = 0; i < 4; i++){
+		seg[i] = 0;
+	}
+}
+
+

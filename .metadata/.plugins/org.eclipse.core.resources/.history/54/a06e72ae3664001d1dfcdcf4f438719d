@@ -1,0 +1,19 @@
+/*
+ * global.h
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: huynh
+ */
+
+#ifndef INC_GLOBAL_H_
+#define INC_GLOBAL_H_
+
+#include "software_timer.h"
+#include "button.h"
+#include "main.h"
+#include "7seg.h"
+#include "traffic_mode.h"
+
+extern int status;
+
+#endif /* INC_GLOBAL_H_ */

@@ -1,0 +1,23 @@
+23:43:18 **** Incremental Build of configuration Debug for project Button ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/traffic_mode.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/traffic_mode.d" -MT"Core/Src/traffic_mode.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/traffic_mode.o"
+arm-none-eabi-gcc -o "Button.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\VXL-VDK\lab-3\Button\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Button.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Button.elf
+ 
+arm-none-eabi-size   Button.elf 
+arm-none-eabi-objdump -h -S  Button.elf  > "Button.list"
+arm-none-eabi-objcopy  -O ihex  Button.elf  "Button.hex"
+arm-none-eabi-objcopy  -O binary  Button.elf  "Button.bin"
+   text	   data	    bss	    dec	    hex	filename
+  10784	    112	   1768	  12664	   3178	Button.elf
+Finished building: default.size.stdout
+ 
+Finished building: Button.hex
+Finished building: Button.bin
+ 
+ 
+Finished building: Button.list
+ 
+
+23:43:19 Build Finished. 0 errors, 0 warnings. (took 937ms)
+

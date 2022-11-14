@@ -1,0 +1,73 @@
+/*
+ * 7seg.c
+ *
+ *  Created on: Nov 13, 2022
+ *      Author: huynh
+ */
+
+#include "7seg.h"
+
+int seg[4] ;
+enum {
+	0001,
+	0010,
+	0011,
+	0100,
+	0101,
+	0110,
+	0111,
+	1000,
+	1001
+};
+
+void update(){
+	if(seg[0] == 1) HAL_GPIO_WritePin(A0_GPIO_Port, A0_Pin, GPIO_PIN_SET);
+	else if(seg[0] == 0) HAL_GPIO_WritePin(A0_GPIO_Port, A0_Pin, GPIO_PIN_RESET);
+
+	if(seg[1] == 1) HAL_GPIO_WritePin(A1_GPIO_Port, A1_Pin, GPIO_PIN_SET);
+	else if(seg[1] == 0) HAL_GPIO_WritePin(A1_GPIO_Port, A1_Pin, GPIO_PIN_RESET);
+
+	if(seg[2] == 1) HAL_GPIO_WritePin(A2_GPIO_Port, A2_Pin, GPIO_PIN_SET);
+	else if(seg[2] == 0) HAL_GPIO_WritePin(A2_GPIO_Port, A2_Pin, GPIO_PIN_RESET);
+
+	if(seg[3] == 1) HAL_GPIO_WritePin(A3_GPIO_Port, A3_Pin, GPIO_PIN_SET);
+	else if(seg[3] == 0) HAL_GPIO_WritePin(A3_GPIO_Port, A3_Pin, GPIO_PIN_RESET);
+}
+
+void clear(){
+	seg[0] = 0;
+	seg[1] = 0;
+	seg[2] = 0;
+	seg[3] = 0;
+}
+
+void display(int number){
+	clear();
+	if(number == 1) seg[3] = 1;
+	if(number == 2) seg[2] = 1;
+	if(number == 3) {
+		seg[2] = 1;
+		seg[3] = 1;
+	}
+	if(number == 4) seg[1] = 1;
+	if(number == 5) {
+		seg[1] = 1;
+		seg[3] = 1;
+	}
+	if(number == 6) {
+		seg[1] = 1;
+		seg[2] = 1;
+	}
+	if(number == 7) {
+		seg[1] = 1;
+		seg[2] = 1;
+		seg[3] = 1;
+	}
+	if(number == 8) seg[0] = 1;
+	if(number == 9) {
+		seg[0] = 1;
+		seg[3] = 1;
+	}
+	update();
+}
+

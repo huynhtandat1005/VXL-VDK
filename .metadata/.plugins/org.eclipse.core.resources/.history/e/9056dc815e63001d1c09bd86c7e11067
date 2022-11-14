@@ -1,0 +1,17 @@
+/*
+ * 7seg.h
+ *
+ *  Created on: Nov 13, 2022
+ *      Author: huynh
+ */
+
+#ifndef INC_7SEG_H_
+#define INC_7SEG_H_
+
+#include "main.h"
+extern int flag_1h
+extern int flag 1i
+void display(int number);
+void clear();
+
+#endif /* INC_7SEG_H_ */

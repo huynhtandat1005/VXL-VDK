@@ -1,0 +1,104 @@
+/*
+ * traffic_mode.c
+ *
+ *  Created on: Nov 13, 2022
+ *      Author: huynh
+ */
+
+#include "traffic_mode.h"
+#include "button.h"
+
+#define INIT1 	0
+#define RED1 	1
+#define YELLOW1 2
+#define GREEN1 	3
+
+#define INIT2	4
+#define RED2 	5
+#define YELLOW2 6
+#define GREEN2 	7
+
+int color1 = 0;
+int color2 = 4;
+
+int red1 = 5;
+
+void mode_run(){
+	switch (status) {
+		case 0:
+			switch (color1) {
+				case INIT1:
+					HAL_GPIO_WritePin(red_1_GPIO_Port, red_1_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(yellow_1_GPIO_Port, yellow_1_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(green_1_GPIO_Port, green_1_Pin, GPIO_PIN_RESET);
+					color1 = RED1;
+					setTimer1(500);
+					setTimer2(100);
+					break;
+				case RED1:
+					HAL_GPIO_WritePin(red_1_GPIO_Port, red_1_Pin, GPIO_PIN_SET);
+					HAL_GPIO_WritePin(yellow_1_GPIO_Port, yellow_1_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(green_1_GPIO_Port, green_1_Pin, GPIO_PIN_RESET);
+
+					if(timer2_flag == 1){
+						display4(red1);
+						red1--;
+						if(red1 <= 0) red1 = 5;
+						setTimer2(100);
+					}
+
+					if(timer1_flag == 1) {
+						color1 = YELLOW1;
+						setTimer1(200);
+					}
+					break;
+				case YELLOW1:
+					HAL_GPIO_WritePin(red_1_GPIO_Port, red_1_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(yellow_1_GPIO_Port, yellow_1_Pin, GPIO_PIN_SET);
+					HAL_GPIO_WritePin(green_1_GPIO_Port, green_1_Pin, GPIO_PIN_RESET);
+
+					if(timer1_flag == 1) {
+						color1 = GREEN1;
+						setTimer1(300);
+					}
+					break;
+				case GREEN1:
+					HAL_GPIO_WritePin(red_1_GPIO_Port, red_1_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(yellow_1_GPIO_Port, yellow_1_Pin, GPIO_PIN_RESET);
+					HAL_GPIO_WritePin(green_1_GPIO_Port, green_1_Pin, GPIO_PIN_SET);
+
+					if(timer1_flag == 1) {
+						color1 = RED1;
+						setTimer1(500);
+					}
+					break;
+
+				default:
+					break;
+			}
+			if(MODE_PRESSED() == 1){
+				status = 1;
+			}
+			break;
+		case 1:
+			display1(1);
+			if(MODE_PRESSED() == 1){
+				status = 2;
+			}
+			break;
+		case 2:
+			display1(2);
+			if(MODE_PRESSED() == 1){
+				status = 3;
+			}
+			break;
+		case 3:
+			display1(3);
+			if(MODE_PRESSED() == 1){
+				status = 0;
+			}
+			break;
+		default:
+			break;
+	}
+}
