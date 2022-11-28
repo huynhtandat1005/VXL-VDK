@@ -1,0 +1,20 @@
+/*
+ * schedule.h
+ *
+ *  Created on: Nov 25, 2022
+ *      Author: huynh
+ */
+
+#ifndef INC_SCHEDULE_H_
+#define INC_SCHEDULE_H_
+#define SCH_MAX_TASKS 40
+#include <stdint.h>
+
+typedef struct{
+	void (*pTask)(void);
+	uint32_t Delay;
+	uint32_t Period;
+	uint8_t RunMe;
+	uint32_t TaskID;
+}sTask;
+#endif /* INC_SCHEDULE_H_ */
